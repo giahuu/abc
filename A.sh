@@ -10,14 +10,14 @@ sudo apt install qemu-system-x86-xen -y
 sudo apt install qemu-system-x86 -y
 qemu-img create -f raw windows.img 128G
 wget -O RTL8139F.iso 'https://www.dropbox.com/s/v1yyj5i1ao3rtq3/RTL8139F.iso?dl=0https://www.dropbox.com/s/v1yyj5i1ao3rtq3/RTL8139F.iso?dl=1'
-wget -O Windows 10 1507.iso 'https://dl.malwarewatch.org/windows/Windows%2010%201507.iso'
+wget -O Windows.iso 'https://dl.malwarewatch.org/windows/Windows%2010%201507.iso'
 
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 sudo qemu-system-x86_64 \
   -m 8G \
   -cpu core2duo \
   -boot order=d \
-  -drive file=Windows 10 1507.iso,media=cdrom \
+  -drive file=Windows.iso,media=cdrom \
   -drive file=windows.img,format=raw \
   -drive file=RTL8139F.iso,media=cdrom \
   -device usb-ehci,id=usb,bus=pci.0,addr=0x4 \
